@@ -8,7 +8,7 @@ export default defineConfig({
     proxy: {
       // все запросы начинающиеся с /api/ будут прокситься на бэкенд
       '/api': {
-        target: 'http://localhost:4000',
+        target: 'https://reimagined-octo-sniffle.onrender.com',
         changeOrigin: true,
       },
     },

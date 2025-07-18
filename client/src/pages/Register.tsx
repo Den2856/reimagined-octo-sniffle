@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
-import GoogleIcon from '../assets/google.svg'
+import GoogleIcon from '../../public/assets/google.svg'
 
 export default function Register() {
   const navigate = useNavigate()
@@ -32,7 +32,7 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[url('/src/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center px-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[url('/public/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center px-4">
       <form
         className="w-full max-w-[540px] h-[600px] bg-blue px-24 py-[50px] rounded-[20px] shadow"
         onSubmit={handleSubmit}

@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 const arrowIcon = new URL('../assets/forAll/arrow.svg', import.meta.url).href
+const DreamStay = new URL('../assets/forAll/icon-stay.svg', import.meta.url).href
 
 const featuresData = [
-  { key: 'findYourDreamStay', icon: '../assets/forAll/icon-stay.svg', href: '/dream-stay' },
+  { key: 'findYourDreamStay', icon: {DreamStay}, href: '/dream-stay' },
   { key: 'cheapHolidayPackages', icon: '../assets/forAll/icon-packages.svg', href: '/packages' },
   { key: 'effortlessCheckIn', icon: '../assets/forAll/icon-checkin.svg', href: '/checkin' },
   { key: 'explorePlaces', icon: '../assets/forAll/icon-explore.svg', href: '/tours' },

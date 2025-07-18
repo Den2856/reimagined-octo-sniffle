@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import axios from 'axios'
 import ExpandableText from './ExpandableText'
-import Stars from '../../public/assetsstars.png'
+import Stars from '../../public/assets/stars.png'
 import ArrowLeft from '../../public/assets/swiper/left-arrow.svg'
 import ArrowRight from '../../public/assets/swiper/right-arrow.svg'
 

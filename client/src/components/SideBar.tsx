@@ -9,7 +9,7 @@ import {
   ShoppingCartIcon,
 } from '@heroicons/react/24/outline'
 import { useAuth } from '../context/AuthContext'
-import defaultAvatarUrl from '../assets/robot.png'
+import defaultAvatarUrl from '../../public/assets/robot.png'
 import { useTranslation } from 'react-i18next'
 
 interface SidebarProps {

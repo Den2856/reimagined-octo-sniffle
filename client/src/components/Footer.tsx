@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import FacebookIcon from '../assets/footer/facebook.svg'
-import LinkedInIcon from '../assets/footer/linkedin.svg'
-import TwitterIcon from '../assets/footer/x.svg'
-import YouTubeIcon from '../assets/footer/youtube.svg'
+import FacebookIcon from '../../public/assets/footer/facebook.svg'
+import LinkedInIcon from '../../public/assets/footer/linkedin.svg'
+import TwitterIcon from '../../public/assets/footer/x.svg'
+import YouTubeIcon from '../../public/assets/footer/youtube.svg'
 
 export default function Footer() {
   const { t } = useTranslation()

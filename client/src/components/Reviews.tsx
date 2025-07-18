@@ -2,9 +2,9 @@ import { useEffect, useState, useMemo } from 'react'
 import axios from 'axios'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiChevronDown } from 'react-icons/fi'
-import RewStar from '../assets/swiper/rewiew-star.svg'
-import ArrowLeft from '../assets/swiper/left-arrow.svg'
-import ArrowRight from '../assets/swiper/right-arrow.svg'
+import RewStar from '../../public/assets/swiper/rewiew-star.svg'
+import ArrowLeft from '../../public/assets/swiper/left-arrow.svg'
+import ArrowRight from '../../public/assets/swiper/right-arrow.svg'
 
 type Review = {
   rating: number

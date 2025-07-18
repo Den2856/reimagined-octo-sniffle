@@ -2,18 +2,17 @@ import { motion, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-// Статические импорты SVG через ?url, чтобы Vite подхватил их при сборке
-import arrowIcon    from '../assets/forAll/arrow.svg?url'
-import stayIcon     from '../assets/forAll/icon-stay.svg?url'
-import packagesIcon from '../assets/forAll/icon-packages.svg?url'
-import checkinIcon  from '../assets/forAll/icon-checkin.svg?url'
-import exploreIcon  from '../assets/forAll/icon-explore.svg?url'
+import arrowIcon from '../../public/assets/forAll/arrow.svg?url'
+import stayIcon from '../../public/assets/forAll/icon-stay.svg?url'
+import packagesIcon from '../../public/assets/forAll/icon-packages.svg?url'
+import checkinIcon from '../../public/assets/forAll/icon-checkin.svg?url'
+import exploreIcon from '../../public/assets/forAll/icon-explore.svg?url'
 
 const featuresData = [
-  { key: 'findYourDreamStay',    icon: stayIcon,     href: '/dream-stay' },
-  { key: 'cheapHolidayPackages',  icon: packagesIcon, href: '/packages' },
-  { key: 'effortlessCheckIn',     icon: checkinIcon,  href: '/checkin' },
-  { key: 'explorePlaces',         icon: exploreIcon,  href: '/tours' },
+  { key: 'findYourDreamStay', icon: stayIcon, href: '/dream-stay' },
+  { key: 'cheapHolidayPackages', icon: packagesIcon, href: '/packages' },
+  { key: 'effortlessCheckIn', icon: checkinIcon, href: '/checkin' },
+  { key: 'explorePlaces', icon: exploreIcon, href: '/tours' },
 ] as const
 
 const containerVariants: Variants = {

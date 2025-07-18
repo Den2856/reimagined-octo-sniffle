@@ -9,10 +9,10 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 
-import Stars from "../assets/stars.png"
-import ArrowLeft from "../assets/swiper/left-arrow.svg"
-import ArrowRight from "../assets/swiper/right-arrow.svg"
-import RewStar from "../assets/swiper/rewiew-star.svg"
+import Stars from "../../public/assets/stars.png"
+import ArrowLeft from "../../public/assets/swiper/left-arrow.svg"
+import ArrowRight from "../../public/assets/swiper/right-arrow.svg"
+import RewStar from "../../public/assets/swiper/rewiew-star.svg"
 
 type Testimonial = {
   rating: number

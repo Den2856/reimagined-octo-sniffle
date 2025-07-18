@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { motion, type Variants, type RepeatType } from 'framer-motion'
-import LeftPattern from '../assets/forAll/pattern-left.svg'
-import RightPattern from '../assets/forAll/pattern-right.svg'
+import LeftPattern from '../../public/assets/forAll/pattern-left.svg'
+import RightPattern from '../../public/assets/forAll/pattern-right.svg'
 
 const MotionLink = motion.create(Link)
 

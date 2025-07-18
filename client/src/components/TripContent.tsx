@@ -6,7 +6,7 @@ import { useCart } from '../context/CartContext'
 import ExpandableText from './ExpandableText'
 import TestimonialsSection from './TestimonialsSection'
 import LeaveReviewForm from './LeaveReviewForm'
-import RewStar from '../assets/swiper/rewiew-star.svg'
+import RewStar from '../../public/assets/swiper/rewiew-star.svg'
 import type { BannerVariant } from './Banner'
 import Spinner from './Spinner'
 

@@ -1,6 +1,6 @@
 import { motion, type Variants } from "framer-motion"
 import { Link } from "react-router-dom"
-import Stars from "../assets/stars.png"
+import Stars from "../../public/assets/stars.png"
 
 type Item = {
   title: string
@@ -13,7 +13,7 @@ const items: Item[] = [
     title: "City Tours",
     count: 150,
     imageUrl: new URL(
-      "../assets/popularThings/city-tours.jpg",
+      "../../public/assets/popularThings/city-tours.jpg",
       import.meta.url
     ).href,
   },
@@ -21,7 +21,7 @@ const items: Item[] = [
     title: "Cultural Towers",
     count: 50,
     imageUrl: new URL(
-      "../assets/popularThings/cultural-towers.jpg",
+      "../../public/assets/popularThings/cultural-towers.jpg",
       import.meta.url
     ).href,
   },
@@ -29,7 +29,7 @@ const items: Item[] = [
     title: "Day Cruises",
     count: 100,
     imageUrl: new URL(
-      "../assets/popularThings/day-cruises.jpg",
+      "../../public/assets/popularThings/day-cruises.jpg",
       import.meta.url
     ).href,
   },
@@ -37,7 +37,7 @@ const items: Item[] = [
     title: "Bus Tours",
     count: 200,
     imageUrl: new URL(
-      "../assets/popularThings/bus-tours.jpg",
+      "../../public/assets/popularThings/bus-tours.jpg",
       import.meta.url
     ).href,
     
@@ -46,7 +46,7 @@ const items: Item[] = [
     title: "Beach Tours",
     count: 80,
     imageUrl: new URL(
-      "../assets/popularThings/beach-tours.jpg",
+      "../../public/assets/popularThings/beach-tours.jpg",
       import.meta.url
     ).href,
   },
@@ -54,7 +54,7 @@ const items: Item[] = [
     title: "Food Tours",
     count: 300,
     imageUrl: new URL(
-      "../assets/popularThings/food-tours.jpg",
+      "../../public/assets/popularThings/food-tours.jpg",
       import.meta.url
     ).href,
   },

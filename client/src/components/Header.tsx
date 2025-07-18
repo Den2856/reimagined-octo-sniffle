@@ -5,10 +5,10 @@ import { Bars3Icon } from '@heroicons/react/24/outline'
 import { useAuth } from '../context/AuthContext'
 import Sidebar from './SideBar'
 import { LanguageSwitcher } from './LanguageSwitcher'
-import defaultAvatarUrl from '../assets/robot.png'
+import defaultAvatarUrl from '../../public/assets/robot.png'
 import { useTranslation } from 'react-i18next'
 
-const logoUrl = new URL('../assets/forAll/logo.png', import.meta.url).href
+const logoUrl = new URL('../../public/assets/forAll/logo.png', import.meta.url).href
 
 const headerVariants: Variants = {
   hidden:  { y: -50, opacity: 0 },

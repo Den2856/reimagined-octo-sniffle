@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-const patternUrl = new URL('../assets/pattern.svg', import.meta.url).href
+const patternUrl = new URL('../../public/assets/pattern.svg', import.meta.url).href
 
 export type BannerVariant = 'promo' | 'info' | 'alert' | 'empty'
 

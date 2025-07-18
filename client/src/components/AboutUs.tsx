@@ -17,7 +17,7 @@ export default function AboutUsPage() {
       {/* Hero */}
       <section
         className="relative h-96 bg-cover bg-center"
-        style={{ backgroundImage: `url('src/assets/forAll/about-hero.jpg')` }}
+        style={{ backgroundImage: `url('../../public/assets/forAll/about-hero.jpg')` }}
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative container mx-auto h-full flex flex-col items-center justify-center text-center px-4">

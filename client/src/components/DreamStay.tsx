@@ -10,7 +10,7 @@ export default function DreamStay() {
     <div className="min-h-screen bg-neutral-8 text-white flex flex-col">
       <motion.section
         className="relative flex-1 flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url('src/assets/features/hero-dream-stay.jpg')` }}
+        style={{ backgroundImage: `url('../../public/assets/features/hero-dream-stay.jpg')` }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}
       >
         <div className="absolute inset-0 bg-black/40" />

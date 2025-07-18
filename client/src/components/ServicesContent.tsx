@@ -18,7 +18,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <motion.header
         className="relative h-56 bg-cover bg-center"
-        style={{ backgroundImage: `url('src/assets/forAll/hero-services.jpg')` }}
+        style={{ backgroundImage: `url('../../public/assets/forAll/hero-services.jpg')` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

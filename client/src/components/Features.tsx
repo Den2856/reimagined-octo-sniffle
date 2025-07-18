@@ -2,13 +2,13 @@ import { motion, type Variants } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-const arrowIcon = new URL('../assets/forAll/arrow.svg', import.meta.url).href
+const arrowIcon = new URL('src/assets/forAll/arrow.svg', import.meta.url).href
 
 const featuresData = [
-  { key: 'findYourDreamStay', icon: '../assets/forAll/icon-stay.svg', href: '/dream-stay' },
-  { key: 'cheapHolidayPackages', icon: '../assets/forAll/icon-packages.svg', href: '/packages' },
-  { key: 'effortlessCheckIn', icon: '../assets/forAll/icon-checkin.svg', href: '/checkin' },
-  { key: 'explorePlaces', icon: '../assets/forAll/icon-explore.svg', href: '/tours' },
+  { key: 'findYourDreamStay', icon: 'src/assets/forAll/icon-stay.svg', href: '/dream-stay' },
+  { key: 'cheapHolidayPackages', icon: 'src/assets/forAll/icon-packages.svg', href: '/packages' },
+  { key: 'effortlessCheckIn', icon: 'src/assets/forAll/icon-checkin.svg', href: '/checkin' },
+  { key: 'explorePlaces', icon: 'src/assets/forAll/icon-explore.svg', href: '/tours' },
 ] as const
 
 const containerVariants: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }

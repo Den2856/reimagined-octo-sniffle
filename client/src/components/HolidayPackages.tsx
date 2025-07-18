@@ -10,7 +10,7 @@ export default function HolidayPackages() {
       {/* Hero */}
       <motion.section
         className="relative flex-1 flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: `url('/src/assets/features/hero-holiday-packages.png')` }}
+        style={{ backgroundImage: `url('/assets/features/hero-holiday-packages.png')` }}
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}

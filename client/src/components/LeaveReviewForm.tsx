@@ -23,11 +23,11 @@ export default function LeaveReviewForm({ tripId, onSuccess }: LeaveReviewFormPr
     }
     try {
       await axios.post('/api/reviews', {
-        trip:   tripId,
+        trip: tripId,
         rating,
         title,
         text,
-        name:   user.name || user.email
+        name: user.name || user.email
       })
       // очистим форму
       setRating(5)

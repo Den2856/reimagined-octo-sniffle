@@ -24,7 +24,7 @@ export default function HeroSection({
   return (
     <motion.section
       className="relative w-full h-[600px] bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: `url(${backgroundImage})`}}
       initial="hidden"
       animate="visible"
       variants={sectionVariants}

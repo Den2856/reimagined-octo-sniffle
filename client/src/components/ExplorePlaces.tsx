@@ -60,7 +60,7 @@ export default function ExplorePlacesPage() {
       {/* Hero + Search */}
       <motion.header
         className="relative h-72 bg-cover bg-center"
-        style={{ backgroundImage: `url('../../public/assets/features/hero-explore.jpg')` }}
+        style={{ backgroundImage: `url('/assets/features/hero-explore.jpg')` }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

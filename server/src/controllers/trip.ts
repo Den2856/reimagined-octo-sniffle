@@ -41,7 +41,7 @@ export const getAllTrips: RequestHandler = async (_req, res, next): Promise<void
         price: t.price,
         continent: t.continent,
         coords: t.coords as [number, number],
-        imageUrl: `../src/assets/trips/${t.imagePath}`,  // скорректируйте согласно раздаче статики
+        imageUrl: `../assets/trips/${t.imagePath}`,  // скорректируйте согласно раздаче статики
         rating: st.avgRating,
         reviewsCount: st.count,
       }
@@ -92,7 +92,7 @@ export const getFeaturedTrips: RequestHandler = async (_req, res, next): Promise
         price: t.price,
         continent: t.continent,
         coords: t.coords as [number, number],
-        imageUrl: `../src/assets/trips/${t.imagePath}`,
+        imageUrl: `../assets/trips/${t.imagePath}`,
         rating: st.avgRating,
         reviewsCount: st.count,
       }
@@ -144,7 +144,7 @@ export const getTripById: RequestHandler = async (req, res, next): Promise<void>
       description: t.description,
       price: t.price,
       coords: t.coords as [number, number],
-      imageUrl: `../src/assets/trips/${t.imagePath}`,
+      imageUrl: `../assets/trips/${t.imagePath}`,
       rating: parseFloat(avgRating.toFixed(2)),
       reviewsCount: count,
     })

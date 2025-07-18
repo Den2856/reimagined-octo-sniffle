@@ -15,80 +15,103 @@ import reviewRouter from './routes/rewiew';
 
 const app = express();
 
-// Регулярные выражения для разрешенных доменов
-const vercelPattern = /https?:\/\/([a-z0-9-]+\.)?reimagined-octo-sniffle(-[a-z0-9]+)?\.vercel\.app/i;
-const renderPattern = /https?:\/\/([a-z0-9-]+\.)?reimagined-octo-sniffle\.onrender\.com/i;
+// 1. Отладочное логирование окружения
+console.log('Environment variables:');
+console.log(`CLIENT_URL: ${process.env.CLIENT_URL}`);
+console.log(`PORT: ${process.env.PORT}`);
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
 
-// 1) JSON-парсер для body
-app.use(express.json());
+// 2. Регулярные выражения для разрешенных доменов
+const allowedDomains = [
+  // Локальные домены
+  /https?:\/\/localhost(:\d+)?$/,
+  /https?:\/\/127\.0\.0\.1(:\d+)?$/,
+  
+  // Все поддомены Vercel
+  /https?:\/\/([a-z0-9-]+\.)?reimagined-octo-sniffle(-[a-z0-9]+)?\.vercel\.app$/i,
+  
+  // Домен Render
+  /https?:\/\/reimagined-octo-sniffle\.onrender\.com$/i,
+  
+  // Конкретный домен из переменной среды
+  new RegExp(`^${process.env.CLIENT_URL?.replace(/\./g, '\\.')}$`)
+].filter(Boolean);
 
-// 2) Cookie-парсер
-app.use(cookieParser());
-
-// 3) CORS с динамической проверкой origin
-app.use(cors({
+// 3. Улучшенный CORS-мидлварь
+const corsOptions: cors.CorsOptions = {
   origin: (origin, callback) => {
-    // Разрешить запросы без origin (Postman, curl и т.д.)
-    if (!origin) {
-      return callback(null, true);
+    try {
+      // Разрешить запросы без origin (Postman, curl)
+      if (!origin) {
+        console.log('[CORS] Allowed: No origin');
+        return callback(null, true);
+      }
+
+      // Проверка всех разрешенных доменов
+      const isAllowed = allowedDomains.some(domain => domain.test(origin));
+      
+      if (isAllowed) {
+        console.log(`[CORS] Allowed: ${origin}`);
+        return callback(null, true);
+      } else {
+        console.warn(`[CORS] Blocked: ${origin}`);
+        return callback(new Error(`Origin '${origin}' not allowed by CORS`), false);
+      }
+    } catch (error) {
+      console.error('[CORS] Error:', error);
     }
-    
-    // Разрешить локальную разработку
-    if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
-      return callback(null, true);
-    }
-    
-    // Разрешить основной домен из переменной среды
-    if (origin === process.env.CLIENT_URL) {
-      return callback(null, true);
-    }
-    
-    // Разрешить все поддомены Vercel
-    if (vercelPattern.test(origin)) {
-      return callback(null, true);
-    }
-    
-    // Разрешить домен Render
-    if (renderPattern.test(origin)) {
-      return callback(null, true);
-    }
-    
-    // Для отладки: вывести в консоль заблокированные домены
-    console.warn(`CORS blocked: ${origin}`);
-    callback(new Error(`Origin '${origin}' not allowed by CORS`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-}));
+  exposedHeaders: ['Content-Length', 'X-Powered-By'],
+  maxAge: 600
+};
 
-// Обработка preflight-запросов
-app.options('*', cors());
+app.use(cors(corsOptions));
 
-// 4) Пинг сервера
+// 4. Обязательная обработка preflight-запросов
+app.options('*', cors(corsOptions));
+
+// 5. JSON-парсер для body
+app.use(express.json());
+
+// 6. Cookie-парсер
+app.use(cookieParser());
+
+// 7. Middleware для логирования всех запросов
+app.use((req: Request, res: Response, next: NextFunction) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} Origin: ${req.headers.origin || 'none'}`);
+  next();
+});
+
+// 8. Пинг сервера
 app.get('/', (_req: Request, res: Response) => {
   res.send('✅ API is running');
 });
 
-// 5) Монтируем роуты
+// 9. Монтируем роуты
 app.use('/api/auth', authRouter);
 app.use('/api/places', placesRouter);
 app.use('/api/tour-types', tourTypesRouter);
 app.use('/api/trips', tripRouter);
 app.use('/api/reviews', reviewRouter);
 
-// 6) Глобальный error‐handler
-app.use((
-  err: any,
-  _req: Request,
-  res: Response,
-  _next: NextFunction
-) => {
-  console.error(err);
-  res.status(err.status || 500).json({ message: err.message || 'Server Error' });
+// 10. Middleware для обработки 404
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({ message: 'Route not found' });
 });
 
-// 7) Подключаем Mongo и стартуем
+// 11. Глобальный обработчик ошибок
+app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
+  console.error(`[ERROR] ${req.method} ${req.path}`, err);
+  res.status(err.status || 500).json({
+    message: err.message || 'Internal Server Error',
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  });
+});
+
+// 12. Подключаем Mongo и стартуем
 mongoose
   .connect(process.env.MONGO_URI!)
   .then(() => {
@@ -96,6 +119,7 @@ mongoose
     const port = process.env.PORT || 4000;
     app.listen(port, () => {
       console.log(`🚀 Server listening on port ${port}`);
+      console.log(`🌐 Allowed CORS domains: ${allowedDomains.map(d => d.toString()).join(', ')}`);
     });
   })
   .catch(err => {

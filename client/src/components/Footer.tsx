@@ -20,7 +20,7 @@ export default function Footer() {
         </div>
         <ul className="flex space-x-4 mt-4 md:mt-0">
           {[
-            { href: 'https://facebook.com/yourpage', aria: 'Facebook', icon: FacebookIcon },
+            { href:  'https://facebook.com/yourpage', aria: 'Facebook', icon: FacebookIcon },
             { href: 'https://linkedin.com/yourpage', aria: 'LinkedIn', icon: LinkedInIcon },
             { href: 'https://twitter.com/yourpage',  aria: 'Twitter',  icon: TwitterIcon  },
             { href: 'https://youtube.com/yourchannel', aria: 'YouTube',  icon: YouTubeIcon  },

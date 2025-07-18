@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* красим фон для всей страницы */
+  body {
+    @apply bg-neutral-8;
+  }
+}

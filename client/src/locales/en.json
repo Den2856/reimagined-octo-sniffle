@@ -1,0 +1,238 @@
+
+{
+  "aboutTripsy": "About Tripsy",
+  "heroDescription": "We inspire you to explore the world and create memories that last a lifetime.",
+  "ourMission": "Our Mission",
+  "learnMore": "At Tripsy, our mission is to deliver personalized travel experiences that connect you to the heart and soul of each destination. From hidden gems to iconic landmarks, we’re here to guide you every step of the way.",
+  "callToAction": "Ready to Start Your Adventure?",
+  "browseTrips": "Browse Trips",
+
+  "page.features": {
+    "handcraftedTours": {
+      "title": "Handcrafted Tours",
+      "desc": "Every itinerary is tailored to your interests—no cookie-cutter packages here."
+    },
+    "support": {
+      "title": "24/7 Support",
+      "desc": "Our team is available around the clock to help with any questions or changes."
+    },
+    "bestPrice": {
+      "title": "Best Price Guarantee",
+      "desc": "We promise competitive rates and transparent pricing—no hidden fees."
+    },
+    "globalCoverage": {
+      "title": "Global Coverage",
+      "desc": "From remote villages to bustling capitals, we cover destinations all over the world."
+    }
+  },
+
+  "banner": {
+    "promo": {
+      "message": "✨ Travel Your Dream Destination",
+      "linkText": "Learn More"
+    },
+    "info": {
+      "message": "ℹ️ Choose the dates of your trip"
+    },
+    "alert": {
+      "message": "⚠️ For booking you must be logged in",
+      "linkText": "Register Now"
+    }
+  },
+
+  "cta": {
+    "heading": "Start Your Real Around The World Journey Today",
+    "description": "Your dream place is just a click away. Whether you’re looking for a new place, a historical place, or a chill place, Estatein is here to assist you every step of the way. Take the first step towards your real trip planner and explore our available properties or get in touch with our team for personalized assistance.",
+    "button": "Explore Places"
+  },
+
+  "cart": {
+    "title": "Your Cart",
+    "emptyMessage": "Your cart is empty.",
+    "goHome": "Go home",
+    "items": "Items",
+    "subtotal": "Subtotal",
+    "clearCart": "Clear Cart",
+    "proceedToCheckout": "Proceed to Checkout",
+    "continueShopping": "Continue Shopping",
+    "nights": {
+      "singular": "night",
+      "plural": "nights"
+    },
+    "guests": {
+      "singular": "guest",
+      "plural": "guests"
+    },
+    "flight": "Flight:",
+    "hotel": "Hotel (×{{count}}):",
+    "transport": "Transport:",
+    "meals": "Meals:",
+    "extras": "Extras (excursions+insurance+visa):",
+    "afterMarkup": "After markup ({{pct}}%):",
+    "seasonFactor": "Season factor (×{{factor}}):",
+    "groupDiscount": "Group discount ({{pct}}%):",
+    "currencyRisk": "Currency risk ({{pct}}%):"
+  },
+
+  "checkIn": {
+    "heading": "Effortless Check-in",
+    "steps": [
+      "Select dates",
+      "Fill your details",
+      "Confirm & go!"
+    ],
+    "descriptions": [
+      "Choose your check-in and check-out dates in a click.",
+      "Provide your passenger info quickly and securely.",
+      "Receive confirmation instantly and enjoy your trip!"
+    ]
+  },
+
+  "dreamStay": {
+    "heading": "Find Your Dream Stay",
+    "places": [
+      { "title": "One&One, Greece", "desc": "Located in Athens, a few steps from Asteras Beach" },
+      { "title": "Golden Place, Armenia", "desc": "Set in Yerevan, 3-minutes walk from Republic Square" },
+      { "title": "Hotel Herman, Denmark", "desc": "Offers a 5-star experience with a fitness center, terrace" },
+      { "title": "Maison Proust, France", "desc": "Everything – this place is a class act – the service" }
+    ],
+    "bookTrip": "Book trip now"
+  },
+
+  "expandable": {
+    "seeMore": "See more",
+    "seeLess": "See less"
+  },
+
+  "explorePlaces": {
+    "heading": "Explore Trips",
+    "searchPlaceholder": "Search by title or location...",
+    "all": "All",
+    "learnMore": "Learn More"
+  },
+
+  "featuredTrips": {
+    "heading": "Featured Trips",
+    "viewAll": "View all trips",
+    "priceFrom": "From",
+    "viewDetails": "View Details",
+    "pagination": { "of": "of" },
+    "expandable": {
+      "readMore": "Read more",
+      "showLess": "Show less"
+    }
+  },
+
+  "features": {
+    "findYourDreamStay": "Find Your Dream Stay",
+    "cheapHolidayPackages": "Cheap Holiday Packages",
+    "effortlessCheckIn": "Effortless Check-in",
+    "explorePlaces": "Explore Places"
+  },
+
+  "footer": {
+    "copyright": "©{{year}} Tripsy. All Rights Reserved.",
+    "terms": "Terms & Conditions"
+  },
+
+  "header": {
+    "nav": {
+      "home": "Home",
+      "aboutUs": "About Us",
+      "places": "Places",
+      "services": "Services"
+    },
+    "login": "Login"
+  },
+
+  "sidebar": {
+    "profile": "Profile",
+    "yourCart": "Your Cart",
+    "reference": "Reference",
+    "logout": "Logout"
+  },
+
+  "heroSection": {
+    "slogan": "Life Is An Adventure\nMake The Best Of It"
+  },
+
+  "holidayPackages": {
+    "heading": "Cheap Holiday Packages",
+    "packages": [
+      { "title": "Beach Escape", "desc": "7 days in Bali", "price": "$799" },
+      { "title": "City Break", "desc": "3 nights in Paris", "price": "$499" },
+      { "title": "Cruise Tour", "desc": "Caribbean cruise", "price": "$1199" }
+    ]
+  },
+
+  "servicesPage": {
+    "hero": {
+      "heading": "Our Services",
+      "description": "Explore a variety of tour types tailored just for you."
+    },
+    "list": [
+      "Guided Tours",
+      "Custom Itineraries",
+      "Transportation",
+      "Accommodation Booking"
+    ],
+    "features": [
+      {
+        "title": "Top Rated Guides",
+        "desc": "Our experienced guides ensure an unforgettable journey."
+      },
+      {
+        "title": "Local Expertise",
+        "desc": "Explore hidden gems and local spots off the beaten path."
+      },
+      {
+        "title": "Flexible Scheduling",
+        "desc": "Tours tailored to your timeline and preferences."
+      }
+    ],
+    "testimonials": [
+      { "text": "Amazing experience, highly recommend!", "author": "Anna" },
+      { "text": "Well organized tours and friendly guides.", "author": "John" },
+      { "text": "Great value for money and personal approach.", "author": "Sophie" }
+    ],
+    "callToAction": {
+      "heading": "Ready to Start Your Adventure?",
+      "button": "Browse Trips"
+    },
+    "rewiew": {
+      "heading": "What Our Partners Say"
+    }
+  },
+
+  "termsAndConditions": {
+    "title": "Terms & Conditions",
+    "lastUpdated": "Last updated: May 24, 2025",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "Welcome to Tripsy! These Terms & Conditions govern your use of our website and services. By accessing or using Tripsy, you agree to comply with these terms."
+      },
+      {
+        "title": "2. Use of Service",
+        "content": "You must be at least 18 years old to use our services. You agree not to misuse the platform or assist others in doing so."
+      },
+      {
+        "title": "3. Intellectual Property",
+        "content": "All content, trademarks, and data on Tripsy, including but not limited to software, text, graphics, and logos, are owned by or licensed to Tripsy."
+      },
+      {
+        "title": "4. Limitation of Liability",
+        "content": "To the fullest extent permitted by law, Tripsy will not be liable for any indirect, incidental, special or consequential damages arising out of or in connection with your use of the service."
+      },
+      {
+        "title": "5. Governing Law",
+        "content": "These Terms & Conditions are governed by and construed in accordance with the laws of the jurisdiction in which Tripsy is established."
+      },
+      {
+        "title": "6. Contact Us",
+        "content": "If you have any questions about these Terms, please contact us at",
+        "contact": "support@tripsy.com"
+      }
+    ]
+  }
+}

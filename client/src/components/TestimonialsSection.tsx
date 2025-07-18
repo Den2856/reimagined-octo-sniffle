@@ -36,7 +36,7 @@ export default function TestimonialsSection({
   const [pagesCount, setPagesCount] = useState(1)
   const swiperRef = useRef<any>(null)
   const spvRef = useRef<number>(1)
-  const API = import.meta.env.VITE_API_URL || "https://reimagined-octo-sniffle.onrender.com/"
+  const API = import.meta.env.VITE_API_URL || ""
 
   useEffect(() => {
     const base = tripId

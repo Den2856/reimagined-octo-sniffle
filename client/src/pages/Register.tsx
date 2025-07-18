@@ -32,7 +32,7 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[url('/public/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center px-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-[url('/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center px-4">
       <form
         className="w-full max-w-[540px] h-[600px] bg-blue px-24 py-[50px] rounded-[20px] shadow"
         onSubmit={handleSubmit}

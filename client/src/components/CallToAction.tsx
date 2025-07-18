@@ -51,7 +51,7 @@ export default function CallToAction() {
             {t('cta.description')}
           </motion.p>
           <MotionLink
-            to="/"
+            to="/tours"
             className="mt-6 inline-block px-8 py-4 bg-button-primary hover:bg-button-hover text-white font-semibold rounded-full transition"
             variants={textVariants}
           >

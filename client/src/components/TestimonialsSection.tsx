@@ -40,8 +40,8 @@ export default function TestimonialsSection({
 
   useEffect(() => {
     const base = tripId
-      ? `${API}api/reviews?trip=${tripId}`
-      : `${API}api/reviews`
+      ? `${API}/api/reviews?trip=${tripId}`
+      : `${API}/api/reviews`
     const url = `${base}${base.includes('?') ? '&' : '?'}rating=5&limit=9`
     axios
       .get<Testimonial[]>(url)

@@ -29,7 +29,7 @@ export const getReviews: RequestHandler = async (req, res, next) => {
       title: d.title,
       text: d.text,
       name: d.name,
-      avatar: d.avatarUrl || '../src/assets/trips/avatars/default.png',
+      avatar: d.avatarUrl || '/assets/trips/avatars/default.png',
       location: (d.trip as any).location,
       trip: (d.trip as any)._id.toString(),
     }))
@@ -70,7 +70,7 @@ export const createReview: RequestHandler = async (req, res, next) => {
       text,
       name,
       location: tripDoc.location,
-      avatarUrl: req.body.avatarUrl || '../src/assets/trips/avatars/default.png',
+      avatarUrl: req.body.avatarUrl || '/assets/trips/avatars/default.png',
     })
 
     // 2) возвращаем ответ — без return

@@ -122,7 +122,7 @@ export default function AllReviewsPage() {
                     w-16 h-16
                     rounded-full
                     object-cover
-                    border-2 border-purple-500
+                    border-2 border-sky-500
                     flex-shrink-0"
                 />
                 <div className="flex-1">

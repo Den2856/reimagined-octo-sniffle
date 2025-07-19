@@ -23,80 +23,108 @@ export default function Register() {
         form,
         { headers: { 'Content-Type': 'application/json' } }
       )
-      // После успешной регистрации редиректим на логин
       navigate('/login')
     } catch (err: any) {
-      // Выводим сообщение из API или универсальную ошибку
       setError(err.response?.data?.message || 'Что-то пошло не так')
     }
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-[url('/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center px-4">
+    <div
+      className="
+        min-h-screen w-full flex items-center justify-center
+        bg-[url('/assets/forAll/bg.svg')] bg-no-repeat bg-cover bg-center
+        px-4 sm:px-6 md:px-8 lg:px-10 xl:px-24
+      "
+    >
       <form
-        className="w-full max-w-[540px] h-[600px] bg-blue px-24 py-[50px] rounded-[20px] shadow"
         onSubmit={handleSubmit}
+        className="
+          w-full
+          max-w-[90vw] sm:max-w-[540px]
+          h-auto sm:h-[600px]
+          bg-blue
+          px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24
+          py-8 sm:py-[50px]
+          rounded-[20px] shadow
+        "
       >
-        <h2 className="text-[28px] text-foreground-h font-bold mb-8">Create an account</h2>
+        <h2 className="text-xl sm:text-[28px] text-foreground-h font-bold mb-8">
+          Create an account
+        </h2>
 
-        {error && (
-          <div className="mb-4 text-red-600 text-sm">
-            {error}
-          </div>
-        )}
+        {error && <div className="mb-4 text-red-600 text-sm">{error}</div>}
 
         <label className="block mb-4">
-          <span className="text-base text-foreground-d font-medium">Name</span>
+          <span className="text-sm sm:text-base text-foreground-d font-medium">
+            Name
+          </span>
           <input
             name="name"
             value={form.name}
             onChange={handleChange}
             required
-            className="mt-3 block w-full border text-foreground-d border-outline-default bg-blue rounded px-3 py-2 focus:outline-none focus:ring"
+            className="
+              mt-3 block w-full border text-foreground-d
+              border-outline-default bg-blue rounded
+              px-3 py-2 focus:outline-none focus:ring
+            "
             placeholder="Иван Иванов"
           />
         </label>
 
         <label className="block mb-4">
-          <span className="text-base text-foreground-d font-medium">Email</span>
+          <span className="text-sm sm:text-base text-foreground-d font-medium">
+            Email
+          </span>
           <input
             name="email"
             type="email"
             value={form.email}
             onChange={handleChange}
             required
-            className="mt-3 block w-full border text-foreground-d border-outline-default bg-blue rounded px-3 py-2 focus:outline-none focus:ring"
+            className="
+              mt-3 block w-full border text-foreground-d
+              border-outline-default bg-blue rounded
+              px-3 py-2 focus:outline-none focus:ring
+            "
             placeholder="you@example.com"
           />
         </label>
 
-          <label className="block mb-8">
-            <span className="text-base text-foreground-d font-medium">Password</span>
-            <div className="relative mt-3">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={form.password}
-                onChange={handleChange}
-                required
-                className="block w-full border text-foreground-d border-outline-default bg-blue rounded px-3 py-2 pr-10 focus:outline-none focus:ring"
-                placeholder="Enter your password"
-              />
+        <label className="block mb-8">
+          <span className="text-sm sm:text-base text-foreground-d font-medium">
+            Password
+          </span>
+          <div className="relative mt-3">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="
+                block w-full border text-foreground-d
+                border-outline-default bg-blue rounded
+                px-3 py-2 pr-10 focus:outline-none focus:ring
+              "
+              placeholder="Enter your password"
+            />
 
-              <button
-                type="button"
-                onClick={() => setShowPassword(prev => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground-d hover:text-white transition"
-                tabIndex={-1}
-              >
-                {showPassword ? (
-                  <EyeSlashIcon className="w-5 h-5" />
-                ) : (
-                  <EyeIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-          </label>
+            <button
+              type="button"
+              onClick={() => setShowPassword(prev => !prev)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-foreground-d hover:text-white transition"
+              tabIndex={-1}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="w-5 h-5" />
+              ) : (
+                <EyeIcon className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+        </label>
 
         <button
           type="submit"
@@ -109,8 +137,8 @@ export default function Register() {
           className="mt-6 w-full py-2 bg-button-default text-foreground-p rounded-lg transition"
           disabled
         >
-          <div className='flex justify-center'>
-            <img src={GoogleIcon} alt='google' className='mr-1'/>
+          <div className="flex justify-center">
+            <img src={GoogleIcon} alt="google" className="mr-1" />
             <span>Continue with Google</span>
           </div>
         </button>

@@ -29,12 +29,12 @@ type Trip = {
 // Контейнер со staggerChildren для всех карточек
 const containerVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } }
+  visible: { transition: { staggerChildren: 0.15 } },
 }
 // Каждая карточка: fade-in + slide-up
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 export default function FeaturedTrips() {
@@ -43,55 +43,61 @@ export default function FeaturedTrips() {
   const [pagesCount, setPagesCount] = useState(1)
 
   const swiperRef = useRef<any>(null)
+  // сколько показывается слайдов одновременно
   const spvRef = useRef<number>(3)
 
   const API = import.meta.env.VITE_API_URL || ''
 
-  // 1) Запрос туров
+  // Загрузка туров
   useEffect(() => {
     axios
       .get<Trip[]>(`${API}/api/trips/featured`)
-      .then(res => setTrips(res.data))
+      .then(res => {
+        setTrips(res.data)
+        // после загрузки, если инициализация ещё не прошла, сбросим на 1
+        setPagesCount(1)
+      })
       .catch(console.error)
   }, [API])
 
-  // Пересчёт страниц
+  // Функция пересчёта количества «страниц»
   const recalcPages = () => {
     const total = trips.length
     const spv = spvRef.current || 1
-    setPagesCount(Math.ceil(total / spv))
+    // если всего меньше или равно slidesPerView — одна «страница»
+    const count = total > spv ? total - spv + 1 : 1
+    setPagesCount(count)
+    // скорректировать currentPage, если за границами
+    setCurrentPage(prev => Math.min(prev, count))
   }
-  useEffect(() => {
-    recalcPages()
-  }, [trips])
 
   // Инициализация Swiper
   const handleSwiperInit = (s: any) => {
     swiperRef.current = s
+    // определяем slidesPerView после инициализации
     const spv = typeof s.params.slidesPerView === 'number'
       ? s.params.slidesPerView
       : 1
     spvRef.current = spv
     recalcPages()
+    // установить текущую страницу (индекс первого видимого слайда +1)
+    setCurrentPage(s.realIndex + 1)
   }
 
-  const pageToIndex = (page: number) => {
-    const spv = spvRef.current
-    const maxIdx = Math.max(trips.length - spv, 0)
-    const idx = (page - 1) * spv
-    return page === pagesCount
-      ? maxIdx
-      : idx
-  }
+  // Обновлять pagesCount при изменении списка туров
+  useEffect(() => {
+    if (swiperRef.current) {
+      recalcPages()
+    }
+  }, [trips])
+
+  // Кнопка «назад»
   const goPrev = () => {
-    const prevPage = Math.max(currentPage - 1, 1)
-    setCurrentPage(prevPage)
-    swiperRef.current?.slideTo(pageToIndex(prevPage))
+    swiperRef.current?.slidePrev()
   }
+  // Кнопка «вперед»
   const goNext = () => {
-    const nextPage = Math.min(currentPage + 1, pagesCount)
-    setCurrentPage(nextPage)
-    swiperRef.current?.slideTo(pageToIndex(nextPage))
+    swiperRef.current?.slideNext()
   }
 
   return (
@@ -105,8 +111,8 @@ export default function FeaturedTrips() {
       <div className="mx-auto px-4">
         {/* Заголовок и описание */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl flex-col font-bold text-white space-x-2">
-            <img className='flex-start' src={Stars} alt="stars" />
+          <h2 className="block max-sm:hidden text-4xl font-bold text-white space-x-2">
+            <img className="flex-start" src={Stars} alt="stars" />
             <span>Featured Trips</span>
           </h2>
           <Link
@@ -117,46 +123,38 @@ export default function FeaturedTrips() {
           </Link>
         </div>
 
-        {/* Сам слайдер */}
+        {/* Слайдер */}
         <Swiper
           modules={[Navigation]}
           onSwiper={handleSwiperInit}
+          onSlideChange={(s: { realIndex: number }) => setCurrentPage(s.realIndex + 1)}
           spaceBetween={24}
           slidesPerView={3}
+          slidesPerGroup={1}
           breakpoints={{
-            640:  { slidesPerView: 1 },
-            768:  { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
+            0:    { slidesPerView: 1, slidesPerGroup: 1 },
+            768:  { slidesPerView: 2, slidesPerGroup: 1 },
+            1200: { slidesPerView: 3, slidesPerGroup: 1 },
           }}
           navigation={false}
           loop={false}
         >
-          {trips.map(item => (
+          {trips.map((item) => (
             <SwiperSlide key={item.id}>
               <motion.div
                 className="bg-neutral-15 border border-neutral-20 rounded-lg overflow-hidden"
                 variants={itemVariants}
               >
-                {/* Картинка */}
                 <img
                   src={item.imageUrl}
                   alt={item.title}
                   className="w-full h-48 object-cover"
                 />
-
                 <div className="p-4">
-                  {/* Локация */}
                   <p className="text-3xl text-white">{item.location}</p>
-
-                  {/* Название (Expandable) */}
                   <h3 className="mt-1 text-xl font-semibold text-white">
-                    <ExpandableText
-                      text={item.title}
-                      maxChars={52}
-                    />
+                    <ExpandableText text={item.title} maxChars={52} />
                   </h3>
-
-                  {/* Цена и кнопка */}
                   <div className="mt-4 flex items-center justify-between">
                     <div>
                       <p className="text-xl text-gray-400">From</p>
@@ -171,8 +169,6 @@ export default function FeaturedTrips() {
                       View Details
                     </Link>
                   </div>
-
-                  {/* Рейтинг */}
                   <div className="mt-4 text-center">
                     <span className="text-white text-[20px] font-medium">
                       {item.rating.toFixed(2)}
@@ -187,7 +183,7 @@ export default function FeaturedTrips() {
           ))}
         </Swiper>
 
-        {/* Пагинация и кастомные стрелки */}
+        {/* Пагинация */}
         <div className="mt-8 flex items-center justify-between">
           <span className="text-gray-400">
             {String(currentPage).padStart(2, '0')} of{' '}
@@ -198,7 +194,7 @@ export default function FeaturedTrips() {
               onClick={goPrev}
               disabled={currentPage === 1}
               className="p-2 bg-neutral-15 rounded-full hover:bg-neutral-20 text-white disabled:opacity-50"
-              aria-label="Previous trip page"
+              aria-label="Previous trip"
             >
               <img src={ArrowLeft} alt="Prev" />
             </button>
@@ -206,7 +202,7 @@ export default function FeaturedTrips() {
               onClick={goNext}
               disabled={currentPage === pagesCount}
               className="p-2 bg-neutral-15 rounded-full hover:bg-neutral-20 text-white disabled:opacity-50"
-              aria-label="Next trip page"
+              aria-label="Next trip"
             >
               <img src={ArrowRight} alt="Next" />
             </button>

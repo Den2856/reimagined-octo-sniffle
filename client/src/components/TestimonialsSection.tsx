@@ -45,15 +45,18 @@ export default function TestimonialsSection({
     const url = `${base}${base.includes('?') ? '&' : '?'}rating=5&limit=9`
     axios
       .get<Testimonial[]>(url)
-      .then((res) => setReviews(res.data))
+      .then(res => setReviews(res.data))
       .catch(console.error)
   }, [API, tripId])
 
   const recalcPages = () => {
     const total = reviews.length
     const spv = spvRef.current || 1
-    setPagesCount(Math.ceil(total / spv))
+    const count = total > spv ? total - spv + 1 : 1
+    setPagesCount(count)
+    setCurrentPage(prev => Math.min(prev, count))
   }
+
   useEffect(() => {
     recalcPages()
     setCurrentPage(1)
@@ -67,10 +70,9 @@ export default function TestimonialsSection({
         : 1
     spvRef.current = spv
     recalcPages()
-    setCurrentPage(1)
+    setCurrentPage(swiper.realIndex + 1)
   }
 
-  // no reviews
   if (reviews.length === 0) {
     return (
       <motion.section
@@ -84,7 +86,7 @@ export default function TestimonialsSection({
         }}
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl flex-col font-bold text-white space-x-2">
+          <h2 className="block max-sm:hidden text-4xl flex-col font-bold text-white space-x-2">
             <img className="flex-start" src={Stars} alt="stars" />
             <span>What Our Clients Say</span>
           </h2>
@@ -99,20 +101,15 @@ export default function TestimonialsSection({
           className="max-w-xl mx-auto text-center px-4 py-8 space-y-6"
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 }
+            visible: { opacity: 1, y: 0 },
           }}
         >
-          {/* Заголовок */}
           <h3 className="text-3xl font-extrabold text-white">
             There are no reviews here yet
           </h3>
-
-          {/* Описание */}
           <p className="text-gray-400 text-lg">
             Travelers have not left their impressions yet. Be the first and share!
           </p>
-
-          {/* Кнопка */}
           <Link
             to="/reviews"
             className="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition-transform transform hover:-translate-y-1"
@@ -120,12 +117,10 @@ export default function TestimonialsSection({
             View all reviews
           </Link>
         </motion.div>
-
       </motion.section>
     )
   }
 
-  // variants для карточек отзывов
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -159,16 +154,13 @@ export default function TestimonialsSection({
         <Swiper
           modules={[Navigation]}
           onSwiper={handleSwiperInit}
-          onSlideChange={(s: any) => {
-            const page =
-              Math.floor(s.realIndex / spvRef.current) + 1
-            setCurrentPage(page)
-          }}
+          onSlideChange={(s: any) => setCurrentPage(s.realIndex + 1)}
           spaceBetween={24}
-          slidesPerGroup={3}
+          slidesPerView={1}
+          slidesPerGroup={1}
           breakpoints={{
-            768: { slidesPerView: 2, slidesPerGroup: 2 },
-            1024: { slidesPerView: 3, slidesPerGroup: 2 },
+            768:  { slidesPerView: 2, slidesPerGroup: 1 },
+            1024: { slidesPerView: 3, slidesPerGroup: 1 },
           }}
           navigation={false}
           loop={false}
@@ -187,9 +179,7 @@ export default function TestimonialsSection({
                 <h3 className="mt-4 text-xl font-semibold text-white">
                   {r.title}
                 </h3>
-                <p className="mt-2 text-gray-400 flex-1">
-                  {r.text}
-                </p>
+                <p className="mt-2 text-gray-400 flex-1">{r.text}</p>
                 <div className="mt-4 flex items-center space-x-3">
                   <img
                     src={r.avatar}
@@ -198,9 +188,7 @@ export default function TestimonialsSection({
                   />
                   <div>
                     <p className="text-white">{r.name}</p>
-                    <p className="text-gray-400 text-sm">
-                      {r.location}
-                    </p>
+                    <p className="text-gray-400 text-sm">{r.location}</p>
                   </div>
                 </div>
               </motion.div>

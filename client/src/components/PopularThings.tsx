@@ -76,7 +76,7 @@ export default function PopularThings() {
     <section className="w-full py-12 bg-neutral-8">
       <div className="mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl flex-col font-bold text-white space-x-2">
+          <h2 className="block max-sm:hidden text-4xl flex-col font-bold text-white space-x-2">
             <img className="flex-start" src={Stars} alt="stars" />
             <span>Popular things to do</span>
           </h2>

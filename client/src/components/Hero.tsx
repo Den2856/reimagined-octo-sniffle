@@ -36,7 +36,7 @@ export default function HeroSection({
 
       <div className="relative z-10 container mx-auto h-full px-4 flex flex-col items-center justify-center">
         <motion.h1
-          className="text-white text-3xl sm:text-2xl md:text-5xl lg:text-6xl font-bold text-center leading-snug"
+          className="text-white text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-center leading-snug"
           initial="hidden"
           animate="visible"
           variants={titleVariants}

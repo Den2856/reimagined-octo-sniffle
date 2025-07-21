@@ -9,7 +9,8 @@ export default function StaticYandexCartMap() {
     return (
       <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-neutral-15 border-2 border-dashed border-gray-300 rounded-lg text-white">
         <p className="text-lg leading-relaxed">
-          In your cart now less then 2 tours
+          In your cart now {toursCount}{' '}
+          {toursCount === 1 ? 'tour' : 'tours'}.
           <br />
           To see the route on the map, add at least one more tour.
         </p>

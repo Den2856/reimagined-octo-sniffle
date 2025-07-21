@@ -7,12 +7,11 @@ export default function StaticYandexCartMap() {
   // Показываем заглушку, когда туров меньше двух
   if (toursCount < 2) {
     return (
-      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-600">
+      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-neutral-15 border-2 border-dashed border-gray-300 rounded-lg text-white">
         <p className="text-lg leading-relaxed">
-          В корзине сейчас {toursCount}{' '}
-          {toursCount === 1 ? 'тур' : 'туров'}.
+          In your cart now less then 2 tours
           <br />
-          Чтобы увидеть маршрут на карте, добавьте ещё хотя бы один тур.
+          To see the route on the map, add at least one more tour.
         </p>
       </div>
     )

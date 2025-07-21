@@ -54,11 +54,11 @@ export const getAllTrips: RequestHandler = async (_req, res, next): Promise<void
 }
 
 /**
- * Возвращает «избранные» туры (первые 8), с подсчитанным средним рейтингом и количеством отзывов.
+ * Возвращает «избранные» туры (первые 9), с подсчитанным средним рейтингом и количеством отзывов.
  */
 export const getFeaturedTrips: RequestHandler = async (_req, res, next): Promise<void> => {
   try {
-    // получаем первые 8 туров
+    // получаем первые 9 туров
     const trips = await Trip.find().limit(9).lean().exec()
 
     // статистика по отзывам для этих туров

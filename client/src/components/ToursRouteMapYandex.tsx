@@ -2,43 +2,57 @@ import { useCart } from '../context/CartContext'
 
 export default function StaticYandexCartMap() {
   const { items } = useCart()
-  // отбираем только валидные coords: [lat, lon]
-  const coords = items
-    .map(i => i.coords)
-    .filter(
-      (c): c is [number, number] =>
-        Array.isArray(c) && c.length === 2
-    )
+  const toursCount = items.length
 
-  if (coords.length = 0){
-    return
-  }
-
-  console.log(coords)
-
-  if (coords.length = 1) {
+  // Показываем заглушку, когда туров меньше двух
+  if (toursCount < 2) {
     return (
-      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-neutral-15 border-2 border-dashed border-gray-300 rounded-lg text-white">
+      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-600">
         <p className="text-lg leading-relaxed">
-          In your cart now less then 2 tours
+          В корзине сейчас {toursCount}{' '}
+          {toursCount === 1 ? 'тур' : 'туров'}.
           <br />
-          To see the route on the map, add at least one more tour.
+          Чтобы увидеть маршрут на карте, добавьте ещё хотя бы один тур.
         </p>
       </div>
     )
   }
 
-  const markerPreset = 'pm2rdm'
+  // Формируем массив пар [lat, lon] — из каждой поездки берём её первую точку
+  const coords = items
+    .map(item => {
+      const raw = item.coords
+      if (
+        Array.isArray(raw) &&
+        raw.length > 0 &&
+        Array.isArray(raw[0]) &&
+        raw[0].length === 2 &&
+        typeof raw[0][0] === 'number'
+      ) {
+        return raw[0] as unknown as [number, number]
+      }
+      // если вдруг coords уже [lat, lon]
+      if (
+        Array.isArray(raw) &&
+        raw.length === 2 &&
+        typeof raw[0] === 'number'
+      ) {
+        return raw as [number, number]
+      }
+      return null
+    })
+    .filter((c): c is [number, number] => c !== null)
 
-  // строим параметр pt=lon,lat,preset~...
+  console.log('coords для маркеров:', coords) // теперь length === items.length
+
+  const markerPreset = 'pm2rdm'
   const pt = coords
     .map(([lat, lon]) => `${lon},${lat},${markerPreset}`)
     .join('~')
 
-  // центр карты — средняя точка
-  const avgLat = coords.reduce((sum, [lat]) => sum + lat, 0) / coords.length
-  const avgLon = coords.reduce((sum, [, lon]) => sum + lon, 0) / coords.length
-
+  // центрим карту на среднем значении
+  const avgLat = coords.reduce((s, [lat]) => s + lat, 0) / coords.length
+  const avgLon = coords.reduce((s, [, lon]) => s + lon, 0) / coords.length
   const ll = `${avgLon},${avgLat}`
   const size = '650,450'
   const zoom = 1

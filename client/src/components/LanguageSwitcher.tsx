@@ -28,7 +28,7 @@ export function LanguageSwitcher() {
         className={`
           absolute top-0 left-0 w-1/2 h-full bg-neutral-8 rounded-full
           transform transition-transform duration-300 ease-in-out
-          ${lang === 'ru' ? 'translate-x-full' : ''}
+          ${lang === 'en' ? 'translate-x-full' : ''}
         `}
       />
 

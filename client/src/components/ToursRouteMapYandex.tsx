@@ -18,10 +18,9 @@ export default function StaticYandexCartMap() {
 
   if (coords.length = 1) {
     return (
-      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-600">
+      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-neutral-15 border-2 border-dashed border-gray-300 rounded-lg text-white">
         <p className="text-lg leading-relaxed">
-          In your cart now {coords.length}{' '}
-          {coords.length === 1 ? 'tour' : 'tours'}.
+          In your cart now less then 2 tours
           <br />
           To see the route on the map, add at least one more tour.
         </p>

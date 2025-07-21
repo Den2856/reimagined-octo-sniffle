@@ -14,6 +14,7 @@ export default function StaticYandexCartMap() {
     return
   }
 
+  console.log(coords)
 
   if (coords.length = 1) {
     return (

@@ -10,8 +10,22 @@ export default function StaticYandexCartMap() {
         Array.isArray(c) && c.length === 2
     )
 
-  if (!coords.length && coords.length === 1) {
+  if (coords.length = 0){
     return
+  }
+
+
+  if (coords.length = 1) {
+    return (
+      <div className="w-full max-w-[800px] mx-auto my-6 px-6 py-10 text-center bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg text-gray-600">
+        <p className="text-lg leading-relaxed">
+          In your cart now {coords.length}{' '}
+          {coords.length === 1 ? 'tour' : 'tours'}.
+          <br />
+          To see the route on the map, add at least one more tour.
+        </p>
+      </div>
+    )
   }
 
   const markerPreset = 'pm2rdm'
@@ -43,11 +57,11 @@ export default function StaticYandexCartMap() {
     .join('')
 
   return (
-    <div style={{ width: '100%', maxWidth: 800, margin: '10px auto' }}>
+    <div className="w-full max-w-[800px] mx-auto my-6">
       <img
         src={src}
         alt="Карта с метками из корзины"
-        style={{ width: '100%', borderRadius: 8 }}
+        className="w-full rounded-lg"
       />
     </div>
   )

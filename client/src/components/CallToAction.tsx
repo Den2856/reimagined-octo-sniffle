@@ -29,7 +29,7 @@ export default function CallToAction() {
 
   return (
     <motion.section
-      className="relative w-full max-w-screen-xl mx-auto border-t-2.5 border-neutral-15 bg-neutral-8 text-white py-8 sm:py-16 overflow-hidden"
+      className="relative w-full max-w-screen-xl border-t-2.5 border-neutral-15 bg-neutral-8 text-white py-8 sm:py-16 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ amount: 0.3 }}

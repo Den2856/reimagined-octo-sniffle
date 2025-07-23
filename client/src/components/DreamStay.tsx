@@ -21,8 +21,8 @@ export default function DreamStay() {
   const places = placesMeta.map(({ slug, href }) => ({
     slug,
     href,
-    title: t(`dreamStay.places.${slug}.title`),
-    desc:  t(`dreamStay.places.${slug}.desc`),
+    title: t(`dreamStay.places.title`),
+    desc:  t(`dreamStay.places.desc`),
   }))
 
   return (

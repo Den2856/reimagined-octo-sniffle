@@ -1,28 +1,33 @@
+// src/components/DreamStay.tsx
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
+type PlaceTranslation = {
+  title: string
+  desc: string
+}
+
 type PlaceMeta = {
-  translationKey: string  // ключ для i18next
-  href: string            // путь для <Link>
+  href: string
 }
 
 const placesMeta: PlaceMeta[] = [
-  { translationKey: 'oneAndOneGreece', href: '/trips/685ae062d1dced7714503b1f' },
-  { translationKey: 'goldenPlaceArmenia', href: '/trips/685ae062d1dced7714503ae3' },
-  { translationKey: 'hotelHermanDenmark', href: '/trips/685ae062d1dced7714503b0a' },
-  { translationKey: 'maisonProustFrance', href: '/trips/685ae062d1dced7714503b19' },
+  { href: '/trips/685ae062d1dced7714503b1f' },
+  { href: '/trips/685ae062d1dced7714503ae3' },
+  { href: '/trips/685ae062d1dced7714503b0a' },
+  { href: '/trips/685ae062d1dced7714503b19' },
 ]
 
 export default function DreamStay() {
   const { t } = useTranslation()
 
-  // Собираем окончательный массив: из меты берём href и translationKey,
-  // по которому дергаем t(...) для title/desc
-  const places = placesMeta.map(({ translationKey, href }) => ({
-    href,
-    title: t(`dreamStay.places.${translationKey}.title`),
-    desc:  t(`dreamStay.places.${translationKey}.desc`),
+  const placesTrans = t('dreamStay.places', { returnObjects: true }) as PlaceTranslation[]
+
+  const places = placesTrans.map((place, idx) => ({
+    title: place.title,
+    desc:  place.desc,
+    href:  placesMeta[idx]?.href ?? '#',
   }))
 
   return (
@@ -46,17 +51,20 @@ export default function DreamStay() {
         </motion.h1>
       </motion.section>
 
-      {/* Карточки */}
+      {/* Сетка карточек */}
       <motion.div
         className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10"
         initial="hidden"
         whileInView="visible"
-        variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+        variants={{
+          hidden:  { opacity: 0, y: 10 },
+          visible: { opacity: 1, y: 0 }
+        }}
         transition={{ staggerChildren: 0.2 }}
       >
         {places.map((p, idx) => (
           <motion.div
-            key={p.href}
+            key={idx}
             className="bg-neutral-15 rounded-xl flex flex-col p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-shadow"
             initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}

@@ -3,31 +3,31 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 type PlaceMeta = {
-  slug: string
-  href: string
+  translationKey: string  // ключ для i18next
+  href: string            // путь для <Link>
 }
 
 const placesMeta: PlaceMeta[] = [
-  { slug: 'One&One, Греция', href: '/trips/685ae062d1dced7714503b1f' },
-  { slug: 'Golden Place, Армения', href: '/trips/685ae062d1dced7714503ae3' },
-  { slug: 'Hotel Herman, Дания', href: '/trips/685ae062d1dced7714503b0a'},
-  { slug: 'Maison Proust, Франция', href: '/trips/685ae062d1dced7714503b19'},
+  { translationKey: 'oneAndOneGreece', href: '/trips/685ae062d1dced7714503b1f' },
+  { translationKey: 'goldenPlaceArmenia', href: '/trips/685ae062d1dced7714503ae3' },
+  { translationKey: 'hotelHermanDenmark', href: '/trips/685ae062d1dced7714503b0a' },
+  { translationKey: 'maisonProustFrance', href: '/trips/685ae062d1dced7714503b19' },
 ]
 
 export default function DreamStay() {
   const { t } = useTranslation()
 
-  // собираем массив с href + переводами по ключам dreamStay.places.{slug}.*
-  const places = placesMeta.map(({ slug, href }) => ({
-    slug,
+  // Собираем окончательный массив: из меты берём href и translationKey,
+  // по которому дергаем t(...) для title/desc
+  const places = placesMeta.map(({ translationKey, href }) => ({
     href,
-    title: t(`dreamStay.places.title`),
-    desc:  t(`dreamStay.places.desc`),
+    title: t(`dreamStay.places.${translationKey}.title`),
+    desc:  t(`dreamStay.places.${translationKey}.desc`),
   }))
 
   return (
     <div className="min-h-screen bg-neutral-8 text-white flex flex-col">
-      {/* Hero Section */}
+      {/* Hero */}
       <motion.section
         className="relative flex-1 flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url('/assets/features/hero-dream-stay.jpg')` }}
@@ -46,7 +46,7 @@ export default function DreamStay() {
         </motion.h1>
       </motion.section>
 
-      {/* Карточки мест */}
+      {/* Карточки */}
       <motion.div
         className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10"
         initial="hidden"
@@ -56,7 +56,7 @@ export default function DreamStay() {
       >
         {places.map((p, idx) => (
           <motion.div
-            key={p.slug}
+            key={p.href}
             className="bg-neutral-15 rounded-xl flex flex-col p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-shadow"
             initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}

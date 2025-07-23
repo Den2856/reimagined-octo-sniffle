@@ -36,10 +36,10 @@ export default function CallToAction() {
       variants={containerVariants}
     >
       <motion.div className="absolute inset-y-0 left-0 z-10 pointer-events-none" variants={patternVariants}>
-        <motion.img src={LeftPattern} alt="" aria-hidden="true" className="h-full w-auto object-cover" />
+        <motion.img src={LeftPattern} alt="" aria-hidden="true" className="h-full object-cover" />
       </motion.div>
       <motion.div className="absolute inset-y-0 right-0 z-10 pointer-events-none" variants={patternVariants}>
-        <motion.img src={RightPattern} alt="" aria-hidden="true" className="h-full w-auto object-cover" />
+        <motion.img src={RightPattern} alt="" aria-hidden="true" className="h-full object-cover" />
       </motion.div>
 
       <div className="relative z-10 px-4 flex flex-col md:flex-row items-center justify-between">

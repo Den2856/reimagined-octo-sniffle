@@ -2,12 +2,32 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
+type PlaceMeta = {
+  slug: string
+  href: string
+}
+
+const placesMeta: PlaceMeta[] = [
+  { slug: 'One&One, Греция', href: '/trips/685ae062d1dced7714503b1f' },
+  { slug: 'Golden Place, Армения', href: '/trips/685ae062d1dced7714503ae3' },
+  { slug: 'Hotel Herman, Дания', href: '/trips/685ae062d1dced7714503b0a'},
+  { slug: 'Maison Proust, Франция', href: '/trips/685ae062d1dced7714503b19'},
+]
+
 export default function DreamStay() {
   const { t } = useTranslation()
-  const places = t('dreamStay.places', { returnObjects: true }) as Array<{ title: string; desc: string; href: string }>
+
+  // собираем массив с href + переводами по ключам dreamStay.places.{slug}.*
+  const places = placesMeta.map(({ slug, href }) => ({
+    slug,
+    href,
+    title: t(`dreamStay.places.${slug}.title`),
+    desc:  t(`dreamStay.places.${slug}.desc`),
+  }))
 
   return (
     <div className="min-h-screen bg-neutral-8 text-white flex flex-col">
+      {/* Hero Section */}
       <motion.section
         className="relative flex-1 flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url('/assets/features/hero-dream-stay.jpg')` }}
@@ -26,6 +46,7 @@ export default function DreamStay() {
         </motion.h1>
       </motion.section>
 
+      {/* Карточки мест */}
       <motion.div
         className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10"
         initial="hidden"
@@ -35,8 +56,8 @@ export default function DreamStay() {
       >
         {places.map((p, idx) => (
           <motion.div
-            key={idx}
-            className="bg-neutral-15 h-auto md:h-[200px] rounded-xl flex flex-col p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-shadow"
+            key={p.slug}
+            className="bg-neutral-15 rounded-xl flex flex-col p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-shadow"
             initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 * idx }}
@@ -48,8 +69,8 @@ export default function DreamStay() {
               {p.desc}
             </p>
             <Link
-              to='/trips/685ae062d1dced7714503b1f'
-              className="relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl w-[150px] text-center bg-button-primary hover:bg-button-hover transition text-sm sm:text-base"
+              to={p.href}
+              className="relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl w-[200px] text-center bg-button-primary hover:bg-button-hover transition text-sm sm:text-base"
             >
               {t('dreamStay.bookTrip')}
             </Link>

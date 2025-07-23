@@ -48,7 +48,7 @@ export default function DreamStay() {
               {p.desc}
             </p>
             <Link
-              to={p.href}
+              to='/trips/685ae062d1dced7714503b1f'
               className="relative px-4 py-2 sm:px-6 sm:py-3 rounded-xl w-[150px] text-center bg-button-primary hover:bg-button-hover transition text-sm sm:text-base"
             >
               {t('dreamStay.bookTrip')}

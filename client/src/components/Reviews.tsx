@@ -69,7 +69,7 @@ export default function AllReviewsPage() {
             <select
               value={ratingFilter}
               onChange={e => setRatingFilter(+e.target.value)}
-              className="w-full bg-neutral-15 text-white border border-neutral-20 rounded-lg px-3 sm:px-4 py-2 sm:py-3 pr-8 text-sm sm:text-base md:text-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-neutral-15 text-white border border-neutral-20 rounded-lg px-3 sm:px-4 py-2 sm:py-3 pr-8 text-sm sm:text-base md:text-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary transition"
             >
               <option value={0}>All ratings</option>
               {[5, 4, 3, 2, 1].map(n => (
@@ -84,7 +84,7 @@ export default function AllReviewsPage() {
             <select
               value={countryFilter}
               onChange={e => setCountryFilter(e.target.value)}
-              className="w-full bg-neutral-15 text-white border border-neutral-20 rounded-lg px-3 sm:px-4 py-2 sm:py-3 pr-8 text-sm sm:text-base md:text-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              className="w-full bg-neutral-15 text-white border border-neutral-20 rounded-lg px-3 sm:px-4 py-2 sm:py-3 pr-8 text-sm sm:text-base md:text-lg appearance-none focus:outline-none focus:ring-2 focus:ring-primary transition"
             >
               {countries.map(c => (
                 <option key={c} value={c}>

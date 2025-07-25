@@ -112,7 +112,7 @@ export default function TestimonialsSection({
           </p>
           <Link
             to="/reviews"
-            className="inline-block px-6 py-3 bg-primary hover:bg-primary-light text-white font-semibold rounded-lg shadow-md transition-transform transform hover:-translate-y-1"
+            className="inline-block px-6 py-3 bg-primary-light hover:bg-primary text-white font-semibold rounded-lg shadow-md transition-transform transform hover:-translate-y-1"
           >
             View all reviews
           </Link>

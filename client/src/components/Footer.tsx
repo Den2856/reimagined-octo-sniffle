@@ -20,10 +20,10 @@ export default function Footer() {
         </div>
         <ul className="flex space-x-4 mt-4 md:mt-0">
           {[
-            { href:  'https://facebook.com/yourpage', aria: 'Facebook', icon: FacebookIcon },
-            { href: 'https://linkedin.com/yourpage', aria: 'LinkedIn', icon: LinkedInIcon },
-            { href: 'https://twitter.com/yourpage',  aria: 'Twitter',  icon: TwitterIcon  },
-            { href: 'https://youtube.com/yourchannel', aria: 'YouTube',  icon: YouTubeIcon  },
+            { href:  '/', aria: 'Facebook', icon: FacebookIcon },
+            { href: '/', aria: 'LinkedIn', icon: LinkedInIcon },
+            { href: '/',  aria: 'Twitter',  icon: TwitterIcon  },
+            { href: '/', aria: 'YouTube',  icon: YouTubeIcon  },
           ].map(({ href, aria, icon }) => (
             <li key={aria}>
               <a href={href} target="_blank" rel="noopener noreferrer" aria-label={aria}
